@@ -16,6 +16,8 @@ class UserDetail extends Component {
                 <h2>{this.props.user.first} {this.props.user.last}</h2>
                 <h3>Age: {this.props.user.age}</h3>
                 <h3>Description: {this.props.user.description}</h3>
+                <i className="fa fa-heart-o" aria-hidden="true" onClick={() => {this.props.user.favouritised = (this.props.user.favouritised)? false : true ;
+                                                                                console.log(this.props.user.favouritised);}}></i>
             </div>
         );
     }

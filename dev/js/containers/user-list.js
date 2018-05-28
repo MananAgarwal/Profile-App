@@ -1,19 +1,30 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {selectUser} from '../actions/index'
+import {selectUser} from '../actions/selectUser'
 
 
 class UserList extends Component {
 
     renderList() {
-        return this.props.users.map((user) => {
+        return this.props.users.map((user) => {    //map traverses the list of users
+            if (user.favouritised)
+               {return (
+                <li
+                    key={user.id}
+                    onClick={() => this.props.selectUser(user)}   //because onclick calls a function
+                >
+                    {user.first} {user.last} <i className="fa fa-heart" aria-hidden="true"></i>
+                </li>
+                );
+               }
+      
             return (
                 <li
                     key={user.id}
-                    onClick={() => this.props.selectUser(user)}
+                    onClick={() => this.props.selectUser(user)}   //because onclick calls a function
                 >
-                    {user.first} {user.last}
+                    {user.first} {user.last} <i className="fa fa-heart-o" aria-hidden="true"></i>
                 </li>
             );
         });
