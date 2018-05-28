@@ -7,6 +7,7 @@
 export default function (state = null, action) {
     switch (action.type) {
         case 'USER_SELECTED':
+            console.log("This is the active user payload (should be ID)" + action.payload);
             return action.payload;
             break;
     }

@@ -12,7 +12,7 @@ class UserList extends Component {
                {return (
                 <li
                     key={user.id}
-                    onClick={() => this.props.selectUser(user)}   //because onclick calls a function
+                    onClick={() => this.props.selectUser(user.id)}   //because onclick calls a function
                 >
                     {user.first} {user.last} <i className="fa fa-heart" aria-hidden="true"></i>
                 </li>
@@ -22,7 +22,7 @@ class UserList extends Component {
             return (
                 <li
                     key={user.id}
-                    onClick={() => this.props.selectUser(user)}   //because onclick calls a function
+                    onClick={() => this.props.selectUser(user.id)}   //because onclick calls a function
                 >
                     {user.first} {user.last} <i className="fa fa-heart-o" aria-hidden="true"></i>
                 </li>
