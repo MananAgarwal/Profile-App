@@ -3,28 +3,17 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {selectUser} from '../actions/selectUser'
 
-
 class UserList extends Component {
 
     renderList() {
+        console.log("favuser prop from user-list" + this.props.favUsers);
         return this.props.users.map((user) => {    //map traverses the list of users
-            if (user.favouritised)
-               {return (
-                <li
-                    key={user.id}
-                    onClick={() => this.props.selectUser(user.id)}   //because onclick calls a function
-                >
-                    {user.first} {user.last} <i className="fa fa-heart" aria-hidden="true"></i>
-                </li>
-                );
-               }
-      
             return (
                 <li
                     key={user.id}
                     onClick={() => this.props.selectUser(user.id)}   //because onclick calls a function
                 >
-                    {user.first} {user.last} <i className="fa fa-heart-o" aria-hidden="true"></i>
+                    {user.first} {user.last} <i className={ (this.props.favUsers.includes(user.id))? "fa fa-heart" : "fa fa-heart-o" } aria-hidden="true"></i>
                 </li>
             );
         });
@@ -44,7 +33,8 @@ class UserList extends Component {
 //      > whenever state changes, the UserList will automatically re-render
 function mapStateToProps(state) {
     return {
-        users: state.users
+        users: state.users,
+        favUsers: state.favUsers
     };
 }
 

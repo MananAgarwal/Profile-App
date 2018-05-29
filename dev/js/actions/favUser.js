@@ -1,7 +1,6 @@
-export const favUser = (user) => {
-    console.log("You favouritised ", user.first);
+export const favUser = (favUser) => {
     return {
         type: 'FAV_USER',
-        payload: user
+        payload: favUser
     }
 };

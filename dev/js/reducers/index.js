@@ -10,7 +10,7 @@ import FavUser from './reducer-fav-user';
 const allReducers = combineReducers({
     users: UserReducer,
     activeUser: ActiveUserReducer,
-    favUser: FavUser
+    favUsers: FavUser
 });
 
 export default allReducers

@@ -1,13 +1,15 @@
-export default function (state = null, action) {
-    // newState = state;
+export default function (state = [1,2], action) {
     switch (action.type) {
         case 'FAV_USER':
-            if(state != null) {
-                console.log(action.payload.favouritised);
-                state.favouritised = (action.payload.favouritised)? false : true ;
-            }
-            return state;
-            break;
+                if(state.includes(action.payload.id)) {
+                    var index = state.indexOf(action.payload.id);
+                    state.splice(index, 1);
+                }
+                else {
+                    state.push(action.payload.id);
+                }
+                return state;
+                break;
     }
     return state;
 }

@@ -12,7 +12,7 @@ export default function () {
             age: 71,
             description: "Bucky is a React developer and YouTuber",
             thumbnail: "http://i.imgur.com/7yUvePI.jpg",
-            favouritised: true
+            // favouritised: true
         },
         {
             id: 2,
@@ -21,7 +21,7 @@ export default function () {
             age: 27,
             description: "Joby loves the Packers, cheese, and turtles.",
             thumbnail: "http://i.imgur.com/52xRlm8.png",
-            favouritised: false
+            // favouritised: false
         },
         {
             id: 3,
@@ -30,7 +30,7 @@ export default function () {
             age: 24,
             description: "Madi likes her dog but it is really annoying.",
             thumbnail: "http://i.imgur.com/4EMtxHB.png",
-            favouritised: false
+            // favouritised: false
         }
     ]
 }

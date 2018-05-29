@@ -8,45 +8,35 @@ import {favUser} from '../actions/favUser'
  * */
 
 class UserDetail extends Component {
-    //static heartState
     render() {
         if (!this.props.userId) {
             return (<div>Select a user...</div>);
         }
-        var ID = this.props.userId-1;
-        // if (this.props.user.favouritised) {
-        //     heartState = "fa fa-heart";
-        // }
-        // else {
-        //     heartState = "fa fa-heart-o";
-        // } 
-        
-        console.log("allusers from userDetails " + this.props.allusers);
+        var ID = this.props.userId-1;  //array number of the user
         console.log("selected user array number" + ID);
 
-        // console.log(" testing " + this.props.allusers[ID].first);
         return (
             <div>
                 <img src={this.props.allusers[ID].thumbnail} />
                 <h2>{this.props.allusers[ID].first} {this.props.allusers[ID].last}</h2>
                 <h3>Age: {this.props.allusers[ID].age}</h3>
                 <h3>Description: {this.props.allusers[ID].description}</h3>
-                <i className="fa fa-heart-o" aria-hidden="true"></i>
+                <i className={ (this.props.favUsers.includes(ID+1))? "fa fa-heart" : "fa fa-heart-o" } aria-hidden="true" onClick={ () => this.props.favUser(this.props.allusers[ID]) }></i>
                 </div>
         );
     }
 }
 
-// "state.activeUser" is set in reducers/index.js
+// "state.activeUser", "state.users", "state.favUsers" are set in reducers/index.js
 function mapStateToProps(state) {
     return {
         userId: state.activeUser,
-        allusers: state.users
+        allusers: state.users,
+        favUsers: state.favUsers
     };
 }
 
-// function matchDispatchToProps(dispatch){
-//     return bindActionCreators({favUser: favUser}, dispatch);
-// }
-// export default connect(mapStateToProps, matchDispatchToProps)(UserDetail);
-export default connect(mapStateToProps)(UserDetail);
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({favUser: favUser}, dispatch);
+}
+export default connect(mapStateToProps, matchDispatchToProps)(UserDetail);
