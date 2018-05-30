@@ -21,7 +21,7 @@ class UserDetail extends Component {
                 <h2>{this.props.allusers[ID].first} {this.props.allusers[ID].last}</h2>
                 <h3>Age: {this.props.allusers[ID].age}</h3>
                 <h3>Description: {this.props.allusers[ID].description}</h3>
-                <i className={ (this.props.favUsers.includes(ID+1))? "fa fa-heart" : "fa fa-heart-o" } aria-hidden="true" onClick={ () => this.props.favUser(this.props.allusers[ID]) }></i>
+                <i className={ ( this.props.favUsers!=null && this.props.favUsers.includes(ID+1))? "fa fa-heart" : "fa fa-heart-o" } aria-hidden="true" onClick={ () => this.props.favUser(this.props.allusers[ID]) }></i>
                 </div>
         );
     }

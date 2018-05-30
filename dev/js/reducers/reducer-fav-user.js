@@ -1,7 +1,10 @@
-export default function (state = [1,2], action) {
+export default function (state = null, action) {
     switch (action.type) {
         case 'FAV_USER':
-                if(state.includes(action.payload.id)) {
+                if(state == null){
+                    state = [action.payload.id];
+                }
+                else if(state.includes(action.payload.id)) {
                     var index = state.indexOf(action.payload.id);
                     state.splice(index, 1);
                 }

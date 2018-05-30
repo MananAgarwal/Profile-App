@@ -13,7 +13,7 @@ class UserList extends Component {
                     key={user.id}
                     onClick={() => this.props.selectUser(user.id)}   //because onclick calls a function
                 >
-                    {user.first} {user.last} <i className={ (this.props.favUsers.includes(user.id))? "fa fa-heart" : "fa fa-heart-o" } aria-hidden="true"></i>
+                    {user.first} {user.last} <i className={ ( this.props.favUsers!=null && this.props.favUsers.includes(user.id) )? "fa fa-heart" : "fa fa-heart-o" } aria-hidden="true"></i>
                 </li>
             );
         });
