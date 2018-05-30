@@ -6,32 +6,27 @@ import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createLogger from 'redux-logger';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { PersistGate } from 'redux-persist/integration/react';
 import allReducers from './reducers';
 import App from './components/App';
+import { loadState, saveState } from './localStorage';
 
-const persistConfig = {
-    key: 'root',
-    storage,
-  }  
-
-const persistedReducer = persistReducer(persistConfig, allReducers);
+const persistedState = loadState();
 const logger = createLogger();
 const store = createStore(
-    persistedReducer,
+    allReducers,
+    persistedState,
     applyMiddleware(thunk, promise, logger)
 );
-const persistor = persistStore(store);
+
+store.subscribe(() => {
+    saveState(store.getState());
+});
 
 console.log(store);
 
 ReactDOM.render(
     <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
             <App />
-        </PersistGate>
     </Provider>,
     document.getElementById('root')
 );
