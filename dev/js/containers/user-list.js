@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {selectUser} from '../actions/selectUser'
+import {selectUser} from '../actions/selectUser';
+import {Link} from 'react-router-dom';
 
 class UserList extends Component {
 
@@ -13,7 +14,10 @@ class UserList extends Component {
                     key={user.id}
                     onClick={() => this.props.selectUser(user.id)}   //because onclick calls a function
                 >
-                    {user.first} {user.last} <i className={ ( this.props.favUsers!=null && this.props.favUsers.includes(user.id) )? "fa fa-heart" : "fa fa-heart-o" } aria-hidden="true"></i>
+                    <Link to={"/userDetail"} className="link">
+                        {user.first} {user.last}
+                        <i className={ ( this.props.favUsers!=null && this.props.favUsers.includes(user.id) )? "fa fa-heart" : "fa fa-heart-o" } aria-hidden="true"></i>
+                    </Link>
                 </li>
             );
         });
