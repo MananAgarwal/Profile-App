@@ -7,8 +7,13 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createLogger from 'redux-logger';
 import allReducers from './reducers';
-import App from './components/App';
 import { loadState, saveState } from './localStorage';
+import {BrowserRouter as Router, Switch, Route, IndexRoute} from 'react-router-dom';
+// import {AppComp} from './components/App';
+import UserList from './components/UserList';
+import UserDetail from './components/UserDetail';
+
+require('../scss/style.scss');
 
 const persistedState = loadState();
 const logger = createLogger();
@@ -24,9 +29,22 @@ store.subscribe(() => {
 
 console.log(store);
 
+class MainApp extends React.Component {
+    render() {        
+            return (
+                <Router>
+                    <Switch>
+                        <Route path={"/userList"} component={UserList}/>
+                        <Route path={"/userDetail"} component={UserDetail}/>
+                    </Switch>
+                </Router>
+            );        
+    }
+}
+
 ReactDOM.render(
     <Provider store={store}>
-            <App />
+            <MainApp />
     </Provider>,
     document.getElementById('root')
 );
